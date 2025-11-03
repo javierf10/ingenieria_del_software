@@ -10,23 +10,31 @@ import androidx.room.Update;
 
 import java.util.List;
 
-/** Definición de un Data Access Object para las notas */
+/** Definición de un Data Access Object (DAO) para los quads */
 @Dao
-public interface NoteDao {
+public interface QuadDao {
 
+    /** Inserta un nuevo quad en la base de datos */
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    long insert(Note note);
+    long insert(Quad quad);
 
+    /** Actualiza un quad existente */
     @Update
-    int update(Note note);
+    int update(Quad quad);
 
+    /** Elimina un quad existente */
     @Delete
-    int delete(Note note);
+    int delete(Quad quad);
 
-    @Query("DELETE FROM note")
+    /** Elimina todos los quads de la tabla */
+    @Query("DELETE FROM Quads")
     void deleteAll();
 
-    @Query("SELECT * FROM note ORDER BY title ASC")
-    LiveData<List<Note>> getOrderedNotes();
-}
+    /** Devuelve todos los quads ordenados por matrícula ascendente */
+    @Query("SELECT * FROM Quads ORDER BY matricula ASC")
+    LiveData<List<Quad>> getOrderedQuads();
 
+    /** Devuelve un quad concreto por su identificador */
+    @Query("SELECT * FROM Quads WHERE quad_id = :id LIMIT 1")
+    LiveData<Quad> getQuadById(int id);
+}
