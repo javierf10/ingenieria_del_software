@@ -1,11 +1,11 @@
-package es.unizar.eina.notepad.database;
+package es.unizar.eina.M117_quads.database;
 
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-/** 
+/**
  * Clase anotada como entidad que representa un Quad.
  * Consta de matrícula, tipo, precio y descripción.
  */

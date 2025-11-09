@@ -1,4 +1,4 @@
-package es.unizar.eina.notepad.ui;
+package es.unizar.eina.M117_quads.ui;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,8 +14,8 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import es.unizar.eina.notepad.database.Note;
-import es.unizar.eina.notepad.R;
+import es.unizar.eina.M117_quads.database.Quad;
+import es.unizar.eina.M117_quads.R;
 
 import static androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult;
 
@@ -74,7 +74,7 @@ public class Notepad extends AppCompatActivity {
     }
 
      public boolean onContextItemSelected(MenuItem item) {
-        Note current = mAdapter.getCurrent();
+        Quad current = mAdapter.getCurrent();
         switch (item.getItemId()) {
             case DELETE_ID:
                 Toast.makeText(
@@ -96,8 +96,8 @@ public class Notepad extends AppCompatActivity {
 
     ActivityResultLauncher<Intent> mStartCreateNote = newActivityResultLauncher(new ExecuteActivityResult() {
         @Override
-        public void process(Bundle extras, Note note) {
-            mNoteViewModel.insert(note);
+        public void process(Bundle extras, Quad quad) {
+            mNoteViewModel.insert(quad);
         }
     });
 
@@ -107,14 +107,14 @@ public class Notepad extends AppCompatActivity {
                 result -> {
                     if (result.getResultCode() == RESULT_OK) {
                         Bundle extras = result.getData().getExtras();
-                        Note note = new Note(extras.getString(NoteEdit.NOTE_TITLE),
+                        Quad quad = new Quad(extras.getString(NoteEdit.NOTE_TITLE),
                                 extras.getString(NoteEdit.NOTE_BODY));
-                        executable.process(extras, note);
+                        executable.process(extras, quad);
                     }
                 });
     }
 
-    private void editNote(Note current) {
+    private void editNote(Quad current) {
         Intent intent = new Intent(this, NoteEdit.class);
         intent.putExtra(NoteEdit.NOTE_TITLE, current.getTitle());
         intent.putExtra(NoteEdit.NOTE_BODY, current.getBody());
@@ -124,15 +124,15 @@ public class Notepad extends AppCompatActivity {
 
     ActivityResultLauncher<Intent> mStartUpdateNote = newActivityResultLauncher(new ExecuteActivityResult() {
         @Override
-        public void process(Bundle extras, Note note) {
+        public void process(Bundle extras, Quad quad) {
             int id = extras.getInt(NoteEdit.NOTE_ID);
-            note.setId(id);
-            mNoteViewModel.update(note);
+            quad.setId(id);
+            mNoteViewModel.update(quad);
         }
     });
 
 }
 
 interface ExecuteActivityResult {
-    void process(Bundle extras, Note note);
+    void process(Bundle extras, Quad quad);
 }

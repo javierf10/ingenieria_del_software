@@ -1,4 +1,4 @@
-package es.unizar.eina.notepad;
+package es.unizar.eina.M117_quads;
 
 import android.content.Context;
 

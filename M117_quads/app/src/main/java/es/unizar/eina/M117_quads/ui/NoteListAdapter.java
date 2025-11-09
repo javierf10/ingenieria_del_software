@@ -1,4 +1,4 @@
-package es.unizar.eina.notepad.ui;
+package es.unizar.eina.M117_quads.ui;
 
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,9 +7,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 
-import es.unizar.eina.notepad.database.Note;
+import es.unizar.eina.M117_quads.database.Quad;
 
-public class NoteListAdapter extends ListAdapter<Note, NoteViewHolder> {
+public class NoteListAdapter extends ListAdapter<Quad, NoteViewHolder> {
     private int position;
 
     public int getPosition() {
@@ -20,7 +20,7 @@ public class NoteListAdapter extends ListAdapter<Note, NoteViewHolder> {
         this.position = position;
     }
 
-    public NoteListAdapter(@NonNull DiffUtil.ItemCallback<Note> diffCallback) {
+    public NoteListAdapter(@NonNull DiffUtil.ItemCallback<Quad> diffCallback) {
         super(diffCallback);
     }
 
@@ -29,14 +29,14 @@ public class NoteListAdapter extends ListAdapter<Note, NoteViewHolder> {
         return NoteViewHolder.create(parent);
     }
 
-    public Note getCurrent() {
+    public Quad getCurrent() {
         return getItem(getPosition());
     }
 
     @Override
     public void onBindViewHolder(NoteViewHolder holder, int position) {
 
-        Note current = getItem(position);
+        Quad current = getItem(position);
         holder.bind(current.getTitle());
 
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
@@ -49,16 +49,16 @@ public class NoteListAdapter extends ListAdapter<Note, NoteViewHolder> {
     }
 
 
-    static class NoteDiff extends DiffUtil.ItemCallback<Note> {
+    static class NoteDiff extends DiffUtil.ItemCallback<Quad> {
 
         @Override
-        public boolean areItemsTheSame(@NonNull Note oldItem, @NonNull Note newItem) {
+        public boolean areItemsTheSame(@NonNull Quad oldItem, @NonNull Quad newItem) {
             //android.util.Log.d ( "NoteDiff" , "areItemsTheSame " + oldItem.getId() + " vs " + newItem.getId() + " " +  (oldItem.getId() == newItem.getId()));
             return oldItem.getId() == newItem.getId();
         }
 
         @Override
-        public boolean areContentsTheSame(@NonNull Note oldItem, @NonNull Note newItem) {
+        public boolean areContentsTheSame(@NonNull Quad oldItem, @NonNull Quad newItem) {
             //android.util.Log.d ( "NoteDiff" , "areContentsTheSame " + oldItem.getTitle() + " vs " + newItem.getTitle() + " " + oldItem.getTitle().equals(newItem.getTitle()));
             // We are just worried about differences in visual representation, i.e. changes in the title
             return oldItem.getTitle().equals(newItem.getTitle());

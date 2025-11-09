@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace 'es.unizar.eina.notepad'
+    namespace 'es.unizar.eina.M117_quads'
     compileSdk 34
 
     defaultConfig {
