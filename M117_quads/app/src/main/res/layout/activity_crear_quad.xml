@@ -1,0 +1,91 @@
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="#000000"
+    android:padding="24dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/crear_quad"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/matr_cula"
+            android:layout_marginTop="60dp"
+            android:textColor="#FFFFFF" />
+
+        <EditText
+            android:id="@+id/txtMatricula"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#1A1A1A"
+            android:textColor="#FFFFFF"
+            android:layout_marginTop="10dp"
+            android:padding="12dp" />
+
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tipo"
+            android:layout_marginTop="16dp"
+            android:textColor="#FFFFFF" />
+
+        <EditText
+            android:id="@+id/txtTipo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#1A1A1A"
+            android:textColor="#FFFFFF"
+            android:layout_marginTop="10dp"
+            android:padding="12dp" />
+
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/precio"
+            android:layout_marginTop="16dp"
+            android:textColor="#FFFFFF" />
+
+        <EditText
+            android:id="@+id/txtPrecio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#1A1A1A"
+            android:textColor="#FFFFFF"
+            android:layout_marginTop="10dp"
+            android:padding="12dp" />
+
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/descripcion"
+            android:layout_marginTop="16dp"
+            android:textColor="#FFFFFF" />
+
+        <EditText
+            android:id="@+id/txtDescripcion"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:background="#1A1A1A"
+            android:textColor="#FFFFFF"
+            android:gravity="top"
+            android:layout_marginTop="10dp"
+            android:padding="12dp" />
+
+
+    <Button
+        android:id="@+id/btnConfirmar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#1E1E1E"
+        android:text="@string/confirmar_creacion"
+        android:layout_marginTop="40dp"
+        android:textColor="#FFFFFF" />
+
+</LinearLayout>
+<!--</ScrollView>-->

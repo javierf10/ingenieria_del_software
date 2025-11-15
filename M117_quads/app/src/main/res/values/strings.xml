@@ -23,4 +23,6 @@
     <string name="crear">+ CREAR</string>
     <string name="eliminar">Eliminar</string>
     <string name="modificar">Modificar</string>
+    <string name="crear_quad">CREAR QUAD</string>
+    <string name="confirmar_creacion">CONFIRMAR CREACION</string>
 </resources>

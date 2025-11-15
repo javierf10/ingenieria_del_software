@@ -56,86 +56,12 @@
         android:backgroundTint="#272727"
         android:layout_marginTop="16dp" />
 
-    <ScrollView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerQuads"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <!-- Item Quad -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="#1A1A1A"
-                android:padding="12dp"
-                android:layout_marginBottom="12dp">
+        android:layout_marginTop="16dp" />
 
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:background="#1A1A1A"
-                    android:padding="12dp"
-                    android:layout_marginBottom="12dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Matrícula: 875423QWE"
-                        android:textColor="#FFFFFF" />
-
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Tipo: monoplaza"
-                        android:textColor="#FFFFFF" />
-
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Precio: 70 euros"
-                        android:textColor="#FFFFFF" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-
-                    android:layout_marginTop="8dp">
-
-
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:backgroundTint="#333333"
-                        android:text="@string/modificar"
-                        android:textColor="#FFFFFF" />
-
-<!--                    <Space-->
-<!--                        android:layout_width="16dp"-->
-<!--                        android:layout_height="wrap_content" />-->
-
-
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/eliminar"
-                        android:textColor="#FFFFFF"
-                        android:backgroundTint="#440000" />
-
-                </LinearLayout>
-            </LinearLayout>
-        </LinearLayout>
-    </ScrollView>
 </LinearLayout>
 

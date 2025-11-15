@@ -45,9 +45,10 @@ public class QuadAdapter extends RecyclerView.Adapter<QuadAdapter.QuadViewHolder
     public void onBindViewHolder(@NonNull QuadViewHolder holder, int position) {
         Quad q = quads.get(position);
 
-        holder.txtMatricula.setText("Matrícula: " + q.getMatricula());
-        holder.txtTipo.setText("Tipo: " + q.getTipo());
-        holder.txtPrecio.setText("Precio: " + q.getPrecio() + "€");
+        holder.txtMatricula.setText(q.getMatricula());
+        holder.txtTipo.setText(q.getTipo());
+        String precio = q.getPrecio() + "€";
+        holder.txtPrecio.setText(precio);
 
         holder.btnModificar.setOnClickListener(v -> listener.onModificar(q));
         holder.btnEliminar.setOnClickListener(v -> listener.onEliminar(q));
