@@ -18,7 +18,6 @@ public abstract class AppDatabase extends RoomDatabase {
 
     /** Métodos abstractos que devuelven los DAOs */
     public abstract QuadDao quadDao();
-    // Cuando crees la entidad Reserva, aquí añadirías:
     // public abstract ReservaDao reservaDao();
 
     /** Instancia singleton de la base de datos */

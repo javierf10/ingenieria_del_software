@@ -24,4 +24,9 @@ public class QuadRepository {
     public void insert(Quad quad) {
         AppDatabase.databaseWriteExecutor.execute(() -> quadDao.insert(quad));
     }
+
+    public void delete(Quad quad) {
+        AppDatabase.databaseWriteExecutor.execute(() -> quadDao.delete(quad));
+    }
+
 }

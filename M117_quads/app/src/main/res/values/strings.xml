@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Notepad</string>
+    <string name="app_name">M117_quads</string>
     <string name="hint_title">Type title ...</string>
     <string name="hint_body">Type body ...</string>
     <string name="button_save">Save</string>
@@ -9,4 +9,18 @@
     <string name="menu_edit">Edit Note</string>
     <string name="title">Title</string>
     <string name="body">Body</string>
+    <string name="quads">Quads</string>
+    <string name="reservas">Reservas</string>
+    <string name="modificar_quad">MODIFICAR QUAD</string>
+    <string name="matr_cula">Matrícula:</string>
+    <string name="tipo">Tipo:</string>
+    <string name="precio">Precio:</string>
+    <string name="descripcion">Descripción:</string>
+    <string name="confirmar">Confirmar</string>
+    <string name="matricula">Matrícula</string>
+    <string name="tipo2">Tipo</string>
+    <string name="precio2">Precio</string>
+    <string name="crear">+ CREAR</string>
+    <string name="eliminar">Eliminar</string>
+    <string name="modificar">Modificar</string>
 </resources>
