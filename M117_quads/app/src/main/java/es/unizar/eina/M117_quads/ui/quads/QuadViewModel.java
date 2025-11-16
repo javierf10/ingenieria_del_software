@@ -30,6 +30,14 @@ public class QuadViewModel extends AndroidViewModel {
         repository.insert(quad);
     }
 
+    public LiveData<Quad> getQuadById(int id) {
+        return repository.getQuadById(id);
+    }
+
+    public void update(Quad quad) {
+        repository.update(quad);
+    }
+
     public void delete(Quad quad) {
         repository.delete(quad);
     }

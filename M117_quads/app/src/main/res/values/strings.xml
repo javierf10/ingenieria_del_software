@@ -25,4 +25,5 @@
     <string name="modificar">Modificar</string>
     <string name="crear_quad">CREAR QUAD</string>
     <string name="confirmar_creacion">CONFIRMAR CREACION</string>
+    <string name="guardar_quad">GUARDAR QUAD</string>
 </resources>

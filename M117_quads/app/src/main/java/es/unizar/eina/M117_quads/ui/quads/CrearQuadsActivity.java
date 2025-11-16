@@ -32,16 +32,17 @@ public class CrearQuadsActivity extends AppCompatActivity {
 
         btnGuardar.setOnClickListener(v -> {
             String matricula = txtMatricula.getText().toString().trim();
-            String tipo = txtTipo.getText().toString().trim();
+            String tipoStr = txtTipo.getText().toString().trim();
             String precioStr = txtPrecio.getText().toString().trim();
             String descripcion = txtDescripcion.getText().toString().trim();
 
-            if (matricula.isEmpty() || tipo.isEmpty() || precioStr.isEmpty()) {
+            if (matricula.isEmpty() || tipoStr.isEmpty() || precioStr.isEmpty()) {
                 Toast.makeText(this, "Faltan datos obligatorios", Toast.LENGTH_SHORT).show();
                 return;
             }
 
             int precio = Integer.parseInt(precioStr);
+            int tipo = Integer.parseInt(tipoStr);
 
             Quad quad = new Quad(matricula, tipo, precio, descripcion);
             quadViewModel.insert(quad);

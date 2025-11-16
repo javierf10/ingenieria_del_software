@@ -25,6 +25,7 @@
             android:textColor="#FFFFFF" />
 
         <EditText
+            android:id="@+id/txtMatricula"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#1A1A1A"
@@ -39,6 +40,7 @@
             android:textColor="#FFFFFF" />
 
         <EditText
+            android:id="@+id/txtTipo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#1A1A1A"
@@ -53,6 +55,7 @@
             android:textColor="#FFFFFF" />
 
         <EditText
+            android:id="@+id/txtPrecio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#1A1A1A"
@@ -67,6 +70,7 @@
             android:textColor="#FFFFFF" />
 
         <EditText
+            android:id="@+id/txtDescripcion"
             android:layout_width="match_parent"
             android:layout_height="120dp"
             android:background="#1A1A1A"
@@ -86,4 +90,3 @@
         android:textColor="#FFFFFF" />
 
 </LinearLayout>
-<!--</ScrollView>-->

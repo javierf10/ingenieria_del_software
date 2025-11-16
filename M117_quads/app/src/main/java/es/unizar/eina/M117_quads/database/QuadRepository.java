@@ -25,6 +25,13 @@ public class QuadRepository {
         AppDatabase.databaseWriteExecutor.execute(() -> quadDao.insert(quad));
     }
 
+    public void update(Quad quad) {
+        AppDatabase.databaseWriteExecutor.execute(() -> quadDao.update(quad));
+    }
+    public LiveData<Quad> getQuadById(int id) {
+        return quadDao.getQuadById(id);
+    }
+
     public void delete(Quad quad) {
         AppDatabase.databaseWriteExecutor.execute(() -> quadDao.delete(quad));
     }

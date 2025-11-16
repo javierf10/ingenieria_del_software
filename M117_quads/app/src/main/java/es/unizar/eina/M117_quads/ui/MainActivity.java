@@ -23,13 +23,14 @@ public class MainActivity extends AppCompatActivity {
 
 
     btnQuads.setOnClickListener(v -> {
-    Intent i = new Intent(MainActivity.this, QuadsActivity.class);
-    startActivity(i);
+        Intent i = new Intent(MainActivity.this, QuadsActivity.class);
+        startActivity(i);
     });
 
 
     btnReservas.setOnClickListener(v -> {
-    // futura pantalla de reservas
+//        Intent i = new Intent(MainActivity.this, ReservasActivity.class);
+//        startActivity(i);
     });
     }
 }
