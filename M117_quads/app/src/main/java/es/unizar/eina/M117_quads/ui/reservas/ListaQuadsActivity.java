@@ -62,7 +62,7 @@ public class ListaQuadsActivity extends AppCompatActivity {
         @NonNull
         @Override
         public QuadViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_quad_seleccionable, parent, false);
+            View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.quad, parent, false);
             return new QuadViewHolder(itemView);
         }
 
