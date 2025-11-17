@@ -1,0 +1,120 @@
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="#1A1A1A"
+    android:padding="12dp"
+    android:layout_marginBottom="12dp">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="#1A1A1A"
+        android:padding="12dp"
+        android:layout_marginBottom="12dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#1A1A1A"
+            android:padding="12dp"
+            android:layout_marginBottom="12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/matr_cula"
+                android:textColor="#FFFFFF" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tipo"
+                android:textColor="#FFFFFF" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/precio"
+                android:textColor="#FFFFFF" />
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="50dp"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#1A1A1A"
+            android:padding="12dp"
+            android:layout_marginBottom="12dp">
+
+            <TextView
+                android:id="@+id/lblMatricula"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="valor_por_defecto"
+                android:textColor="#FFFFFF" />
+
+
+            <TextView
+                android:id="@+id/lblTipo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="valor_por_defecto"
+                android:textColor="#FFFFFF" />
+
+
+            <TextView
+                android:id="@+id/lblPrecio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="valor_por_defecto"
+                android:textColor="#FFFFFF" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+
+        android:layout_marginTop="8dp">
+
+
+        <Button
+            android:id="@+id/btnModificarQuad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#333333"
+            android:text="@string/modificar"
+            android:textColor="#FFFFFF" />
+
+        <!--                    <Space-->
+        <!--                        android:layout_width="16dp"-->
+        <!--                        android:layout_height="wrap_content" />-->
+
+
+        <Button
+            android:id="@+id/btnEliminarQuad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/eliminar"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#440000" />
+
+    </LinearLayout>
+</LinearLayout>
