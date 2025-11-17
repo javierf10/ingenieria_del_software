@@ -86,7 +86,7 @@ public class QuadAdapter extends RecyclerView.Adapter<QuadAdapter.QuadViewHolder
         Quad q = quads.get(position);
 
         holder.txtMatricula.setText(q.getMatricula());
-        holder.txtTipo.setText(q.getTipo());
+        holder.txtTipo.setText(String.valueOf(q.getTipo()));
         String precio = q.getPrecio() + "€";
         holder.txtPrecio.setText(precio);
 

@@ -65,7 +65,7 @@ public class ModificarQuadsActivity extends AppCompatActivity {
         quadViewModel.getQuadById(quadId).observe(this, quad -> {
             if (quad != null) {
                 txtMatricula.setText(quad.getMatricula());
-                txtTipo.setText(quad.getTipo());
+                txtTipo.setText(String.valueOf(quad.getTipo()));
                 txtPrecio.setText(String.valueOf(quad.getPrecio()));
                 txtDescripcion.setText(quad.getDescripcion());
             }
