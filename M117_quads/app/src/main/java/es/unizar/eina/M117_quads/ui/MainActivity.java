@@ -32,9 +32,10 @@ public class MainActivity extends AppCompatActivity {
 
         // Botón para navegar a la actividad de quads
         Button btnQuads = findViewById(R.id.btnQuads);
-        // Botón para navegar a la actividad de reservas (pendiente)
-        Button btnReservas = findViewById(R.id.btnReservas);
-
+        // Botón para navegar a la actividad de reservas
+        // Button btnReservas = findViewById(R.id.btnReservas);
+        
+                
         // Acción al pulsar el botón de quads
         btnQuads.setOnClickListener(v -> {
             Intent i = new Intent(MainActivity.this, QuadsActivity.class);
