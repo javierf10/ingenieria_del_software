@@ -30,6 +30,18 @@
         <activity
             android:name=".ui.quads.CrearQuadsActivity"
             android:exported="false" />
+        <activity
+            android:name=".ui.quads.ListaQuadsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.reservas.ReservasActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.reservas.ModificarReservasActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.reservas.CrearReservasActivity"
+            android:exported="false" />
     </application>
 
 </manifest>
