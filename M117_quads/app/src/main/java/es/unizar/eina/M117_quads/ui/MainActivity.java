@@ -8,6 +8,7 @@ import android.widget.Button;
 
 import es.unizar.eina.M117_quads.R;
 import es.unizar.eina.M117_quads.ui.quads.QuadsActivity;
+import es.unizar.eina.M117_quads.ui.reservas.ReservasActivity;
 
 /**
  * Actividad principal de la aplicación.
@@ -33,19 +34,18 @@ public class MainActivity extends AppCompatActivity {
         // Botón para navegar a la actividad de quads
         Button btnQuads = findViewById(R.id.btnQuads);
         // Botón para navegar a la actividad de reservas
-        // Button btnReservas = findViewById(R.id.btnReservas);
-        
-                
+        Button btnReservas = findViewById(R.id.btnReservas);
+
         // Acción al pulsar el botón de quads
         btnQuads.setOnClickListener(v -> {
             Intent i = new Intent(MainActivity.this, QuadsActivity.class);
             startActivity(i);
         });
 
-        // Acción al pulsar el botón de reservas (comentada por ahora)
-//        btnReservas.setOnClickListener(v -> {
-//            Intent i = new Intent(MainActivity.this, ReservasActivity.class);
-//            startActivity(i);
-//        });
+        // Acción al pulsar el botón de reservas
+        btnReservas.setOnClickListener(v -> {
+            Intent i = new Intent(MainActivity.this, ReservasActivity.class);
+            startActivity(i);
+        });
     }
 }
