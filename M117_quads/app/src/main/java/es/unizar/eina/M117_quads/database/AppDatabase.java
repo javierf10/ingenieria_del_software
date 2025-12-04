@@ -5,6 +5,7 @@ import android.content.Context;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.room.TypeConverters;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -13,12 +14,13 @@ import java.util.concurrent.Executors;
  * Clase que representa la base de datos Room de la aplicación.
  * Contiene las entidades y los DAOs correspondientes.
  */
-@Database(entities = {Quad.class}, version = 1, exportSchema = false)
+@Database(entities = {Quad.class, Reserva.class}, version = 2, exportSchema = false)
+@TypeConverters({Converters.class})
 public abstract class AppDatabase extends RoomDatabase {
 
     /** Métodos abstractos que devuelven los DAOs */
     public abstract QuadDao quadDao();
-    // public abstract ReservaDao reservaDao();
+    public abstract ReservaDao reservaDao();
 
     /** Instancia singleton de la base de datos */
     private static volatile AppDatabase INSTANCE;
