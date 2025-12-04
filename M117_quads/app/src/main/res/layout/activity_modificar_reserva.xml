@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:background="#000000"
+    android:padding="24dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="MODIFICAR RESERVA"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="24dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nombre"
+        android:layout_marginTop="16dp"
+        android:textColor="#FFFFFF" />
+
+    <EditText
+        android:id="@+id/editNombre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#1A1A1A"
+        android:textColor="#FFFFFF"
+        android:layout_marginTop="10dp"
+        android:padding="12dp"
+        android:hint="Nombre del cliente"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Número de teléfono"
+        android:layout_marginTop="16dp"
+        android:textColor="#FFFFFF" />
+
+    <EditText
+        android:id="@+id/editNumero"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#1A1A1A"
+        android:textColor="#FFFFFF"
+        android:layout_marginTop="10dp"
+        android:padding="12dp"
+        android:inputType="phone"
+        android:hint="600123456"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Fecha de recogida"
+        android:layout_marginTop="16dp"
+        android:textColor="#FFFFFF" />
+
+    <EditText
+        android:id="@+id/editFechaRecogida"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#1A1A1A"
+        android:textColor="#FFFFFF"
+        android:layout_marginTop="10dp"
+        android:padding="12dp"
+        android:inputType="date"
+        android:hint="dd/MM/yyyy"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Fecha de devolución"
+        android:layout_marginTop="16dp"
+        android:textColor="#FFFFFF" />
+
+    <EditText
+        android:id="@+id/editFechaDevolucion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#1A1A1A"
+        android:textColor="#FFFFFF"
+        android:layout_marginTop="10dp"
+        android:padding="12dp"
+        android:inputType="date"
+        android:hint="dd/MM/yyyy"/>
+
+    <Button
+        android:id="@+id/btnAnadirQuad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#1E1E1E"
+        android:text="Añadir quad"
+        android:layout_marginTop="24dp"
+        android:textColor="#FFFFFF" />
+
+    <Button
+        android:id="@+id/btnConfirmar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#1E1E1E"
+        android:text="Confirmar"
+        android:layout_marginTop="40dp"
+        android:textColor="#FFFFFF" />
+
+</LinearLayout>
