@@ -11,11 +11,15 @@
     <string name="body">Body</string>
     <string name="quads">Quads</string>
     <string name="reservas">Reservas</string>
+    <string name="nombre">Nombre</string>
+    <string name="numeroTelef">Número</string>
+    <string name="fechaRecogida">Fecha Recogida</string>
+    <string name="fechaDevolucion">Fecha Devolución</string>"
     <string name="modificar_quad">MODIFICAR QUAD</string>
-    <string name="matr_cula">Matrícula:</string>
-    <string name="tipo">Tipo:</string>
-    <string name="precio">Precio:</string>
-    <string name="descripcion">Descripción:</string>
+    <string name="matr_cula">Matrícula</string>
+    <string name="tipo">Tipo</string>
+    <string name="precio">Precio</string>
+    <string name="descripcion">Descripción</string>
     <string name="confirmar">Confirmar</string>
     <string name="matricula">Matrícula</string>
     <string name="tipo2">Tipo</string>
@@ -26,4 +30,8 @@
     <string name="crear_quad">CREAR QUAD</string>
     <string name="confirmar_creacion">CONFIRMAR CREACION</string>
     <string name="guardar_quad">GUARDAR QUAD</string>
+    <string name="quad_matricula_label">Matrícula: %s</string>
+    <string name="quad_tipo_label">Tipo: %s</string>
+    <string name="quad_precio_label">Precio: %.2f euros</string>
+    <string name="reserva_fechas_label">Recogida: %1$s\nDevolución: %2$s</string>
 </resources>
