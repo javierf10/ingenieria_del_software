@@ -34,4 +34,5 @@
     <string name="quad_tipo_label">Tipo: %s</string>
     <string name="quad_precio_label">Precio: %.2f euros</string>
     <string name="reserva_fechas_label">Recogida: %1$s\nDevolución: %2$s</string>
+    <string name="enviar">ENVIAR</string>
 </resources>

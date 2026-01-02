@@ -22,6 +22,7 @@ public class ReservaAdapter extends RecyclerView.Adapter<ReservaAdapter.ReservaV
     public interface OnReservaClickListener {
         void onModificar(Reserva reserva);
         void onEliminar(Reserva reserva);
+        void onEnviar(Reserva reserva);
     }
 
     public ReservaAdapter(OnReservaClickListener listener) {
@@ -58,6 +59,7 @@ public class ReservaAdapter extends RecyclerView.Adapter<ReservaAdapter.ReservaV
         private final TextView fechas;
         private final Button modificar;
         private final Button eliminar;
+        private final Button enviar;
 
         private ReservaViewHolder(View itemView) {
             super(itemView);
@@ -66,6 +68,7 @@ public class ReservaAdapter extends RecyclerView.Adapter<ReservaAdapter.ReservaV
             fechas = itemView.findViewById(R.id.reserva_item_fechas);
             modificar = itemView.findViewById(R.id.reserva_item_modificar);
             eliminar = itemView.findViewById(R.id.reserva_item_eliminar);
+            enviar = itemView.findViewById(R.id.reserva_item_enviar);
         }
 
         public void bind(Reserva reserva, OnReservaClickListener listener) {
@@ -87,6 +90,7 @@ public class ReservaAdapter extends RecyclerView.Adapter<ReservaAdapter.ReservaV
 
             modificar.setOnClickListener(v -> listener.onModificar(reserva));
             eliminar.setOnClickListener(v -> listener.onEliminar(reserva));
+            enviar.setOnClickListener(v -> listener.onEnviar(reserva));
         }
     }
 }

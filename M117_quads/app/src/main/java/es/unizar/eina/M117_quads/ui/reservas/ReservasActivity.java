@@ -9,6 +9,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
+import es.unizar.eina.send.SendAbstraction;
+import es.unizar.eina.send.SendAbstractionImpl;
+import es.unizar.eina.send.WhatsAppImplementor;
+
 import es.unizar.eina.M117_quads.database.Reserva;
 import es.unizar.eina.M117_quads.R;
 
@@ -22,6 +26,7 @@ public class ReservasActivity extends AppCompatActivity implements ReservaAdapte
 
     /** ViewModel que gestiona la información de los reservas. */
     private ReservaViewModel reservaViewModel;
+    private SendAbstraction sendAbstraction;
 
     /**
      * Método llamado al crear la actividad.
@@ -35,6 +40,7 @@ public class ReservasActivity extends AppCompatActivity implements ReservaAdapte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reservas);
 
+        sendAbstraction = new SendAbstractionImpl(this, "whatsapp");
         // Configuración del botón para crear una nueva reserva
         Button btnCrear = findViewById(R.id.btnCrearReserva);
         btnCrear.setOnClickListener(v -> {
@@ -53,6 +59,9 @@ public class ReservasActivity extends AppCompatActivity implements ReservaAdapte
         // Inicialización del ViewModel y observación de cambios en las reservas
         reservaViewModel = new ViewModelProvider(this).get(ReservaViewModel.class);
         reservaViewModel.getAllReservas().observe(this, adapter::setReservas);
+
+
+
     }
 
     /**
@@ -79,4 +88,23 @@ public class ReservasActivity extends AppCompatActivity implements ReservaAdapte
     public void onEliminar(Reserva reserva) {
         reservaViewModel.delete(reserva);
     }
+
+    /**
+     * Acción a realizar cuando se solicita enviar una reserva.
+     * Llama al ViewModel para borrar la reserva de la base de datos.
+     *
+     * @param reserva Reserva que se desea eliminar
+     */
+    @Override
+    public void onEnviar(Reserva reserva) {
+        String phone = reserva.getNumeroTelef();
+        String message = buildReservaMessage(reserva);
+        sendAbstraction.send(phone, message);
+    }
+    private String buildReservaMessage(Reserva reserva) {
+        return "Reserva a nombre de: " + reserva.getNombre() + "\n" +
+                "Fecha de recogida: " + reserva.getFechaRecogida() + "\n" +
+                "Fecha de devolución: " + reserva.getFechaDevolucion();
+    }
+
 }
