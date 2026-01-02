@@ -92,11 +92,18 @@ public class ModificarQuadsActivity extends AppCompatActivity {
             Quad quadActualizado = new Quad(matricula, tipo, precio, descripcion);
             quadActualizado.setId(quadId);
 
-            // Actualizar el quad en la base de datos
-            quadViewModel.update(quadActualizado);
 
-            Toast.makeText(this, "Quad modificado", Toast.LENGTH_SHORT).show();
-            finish();
+            // Actualizar el quad en la base de datos
+            try {
+                quadViewModel.update(quadActualizado);
+                Toast.makeText(this, "Quad modificado", Toast.LENGTH_SHORT).show();
+                finish();
+            } catch (IllegalArgumentException e) {
+                Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+
+//            Toast.makeText(this, "Quad modificado", Toast.LENGTH_SHORT).show();
+//            finish();
         });
     }
 }

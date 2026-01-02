@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
+import es.unizar.eina.M117_quads.database.Validator;
 /**
  * Repositorio para la gestión de objetos {@link Quad}.
  * <p>
@@ -41,21 +42,27 @@ public class QuadRepository {
         return allQuads;
     }
 
+
     /**
-     * Inserta un nuevo quad en la base de datos de manera asíncrona.
+     * Inserta un quad en la base de datos, validando antes sus parámetros.
      *
      * @param quad Quad a insertar.
+     * @throws IllegalArgumentException si alguno de los campos no cumple las reglas de validación.
      */
     public void insert(Quad quad) {
+        Validator.validateQuad(quad);
         AppDatabase.databaseWriteExecutor.execute(() -> quadDao.insert(quad));
     }
 
+
     /**
-     * Actualiza un quad existente en la base de datos de manera asíncrona.
+     * Actualiza un quad existente, validando antes sus parámetros.
      *
      * @param quad Quad a actualizar.
+     * @throws IllegalArgumentException si alguno de los campos no cumple las reglas de validación.
      */
     public void update(Quad quad) {
+        Validator.validateQuad(quad);
         AppDatabase.databaseWriteExecutor.execute(() -> quadDao.update(quad));
     }
 
@@ -79,3 +86,6 @@ public class QuadRepository {
     }
 
 }
+
+
+

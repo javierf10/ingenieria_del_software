@@ -64,10 +64,16 @@ public class CrearQuadsActivity extends AppCompatActivity {
 
             // Creación del nuevo quad y guardado en la base de datos
             Quad quad = new Quad(matricula, tipo, precio, descripcion);
-            quadViewModel.insert(quad);
 
-            Toast.makeText(this, "Quad creado", Toast.LENGTH_SHORT).show();
-            finish();
+            try {
+                quadViewModel.insert(quad);
+                Toast.makeText(this, "Quad creado", Toast.LENGTH_SHORT).show();
+                finish();
+            } catch (IllegalArgumentException e) {
+                Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+
+
         });
     }
 }
