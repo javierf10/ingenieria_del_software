@@ -14,7 +14,7 @@ import java.util.concurrent.Executors;
  * Clase que representa la base de datos Room de la aplicación.
  * Contiene las entidades y los DAOs correspondientes.
  */
-@Database(entities = {Quad.class, Reserva.class}, version = 2, exportSchema = false)
+@Database(entities = {Quad.class, Reserva.class, ReservaQuadCrossRef.class}, version = 3, exportSchema = false)
 @TypeConverters({Converters.class})
 public abstract class AppDatabase extends RoomDatabase {
 

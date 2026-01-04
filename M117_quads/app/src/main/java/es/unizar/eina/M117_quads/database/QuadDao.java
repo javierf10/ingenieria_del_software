@@ -37,4 +37,8 @@ public interface QuadDao {
     /** Devuelve un quad concreto por su identificador */
     @Query("SELECT * FROM Quads WHERE quad_id = :id LIMIT 1")
     LiveData<Quad> getQuadById(int id);
+
+    /** Devuelve una lista de quads a partir de sus IDs */
+    @Query("SELECT * FROM Quads WHERE quad_id IN (:quadIds)")
+    LiveData<List<Quad>> getQuadsByIds(List<Integer> quadIds);
 }

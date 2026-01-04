@@ -77,6 +77,16 @@ public class QuadRepository {
     }
 
     /**
+     * Obtiene una lista de quads a partir de sus IDs.
+     *
+     * @param quadIds Lista de identificadores de quads.
+     * @return LiveData que contiene la lista de quads correspondientes.
+     */
+    public LiveData<List<Quad>> getQuadsByIds(List<Integer> quadIds) {
+        return quadDao.getQuadsByIds(quadIds);
+    }
+
+    /**
      * Elimina un quad de la base de datos de manera asíncrona.
      *
      * @param quad Quad a eliminar.
@@ -86,6 +96,5 @@ public class QuadRepository {
     }
 
 }
-
 
 

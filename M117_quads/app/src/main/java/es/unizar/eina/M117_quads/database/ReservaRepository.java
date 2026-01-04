@@ -74,12 +74,49 @@ public class ReservaRepository {
     }
 
     /**
+     * Inserta una nueva reserva y sus quads asociados en la base de datos de manera asíncrona.
+     *
+     * @param reserva Reserva a insertar.
+     * @param quadIds Lista de IDs de quads a asociar.
+     */
+    public void insert(Reserva reserva, List<Integer> quadIds) {
+        AppDatabase.databaseWriteExecutor.execute(() -> {
+            long reservaId = reservaDao.insert(reserva);
+            if (quadIds != null && !quadIds.isEmpty()) {
+                for (Integer quadId : quadIds) {
+                    ReservaQuadCrossRef crossRef = new ReservaQuadCrossRef((int) reservaId, quadId);
+                    reservaDao.insertReservaQuadCrossRef(crossRef);
+                }
+            }
+        });
+    }
+
+    /**
      * Actualiza un reserva existente en la base de datos de manera asíncrona.
      *
      * @param reserva Reserva a actualizar.
      */
     public void update(Reserva reserva) {
         AppDatabase.databaseWriteExecutor.execute(() -> reservaDao.update(reserva));
+    }
+
+    /**
+     * Actualiza una reserva existente y sus quads asociados en la base de datos de manera asíncrona.
+     *
+     * @param reserva Reserva a actualizar.
+     * @param quadIds Lista de IDs de quads a asociar.
+     */
+    public void update(Reserva reserva, List<Integer> quadIds) {
+        AppDatabase.databaseWriteExecutor.execute(() -> {
+            reservaDao.update(reserva);
+            reservaDao.deleteCrossRefsForReserva(reserva.getId());
+            if (quadIds != null && !quadIds.isEmpty()) {
+                for (Integer quadId : quadIds) {
+                    ReservaQuadCrossRef crossRef = new ReservaQuadCrossRef(reserva.getId(), quadId);
+                    reservaDao.insertReservaQuadCrossRef(crossRef);
+                }
+            }
+        });
     }
 
     /**
@@ -90,6 +127,16 @@ public class ReservaRepository {
      */
     public LiveData<Reserva> getReservaById(int id) {
         return reservaDao.getReservaById(id);
+    }
+
+    /**
+     * Obtiene los IDs de los quads asociados a una reserva.
+     *
+     * @param reservaId Identificador de la reserva.
+     * @return LiveData que contiene la lista de IDs de quads.
+     */
+    public LiveData<List<Integer>> getQuadIdsForReserva(int reservaId) {
+        return reservaDao.getQuadIdsForReserva(reservaId);
     }
 
     /**

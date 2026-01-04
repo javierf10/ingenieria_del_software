@@ -18,6 +18,10 @@ public interface ReservaDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     long insert(Reserva reserva);
 
+    /** Inserta una relación entre una reserva y un quad */
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    void insertReservaQuadCrossRef(ReservaQuadCrossRef crossRef);
+
     /** Actualiza un reserva existente */
     @Update
     int update(Reserva reserva);
@@ -25,6 +29,14 @@ public interface ReservaDao {
     /** Elimina un reserva existente */
     @Delete
     int delete(Reserva reserva);
+
+    /** Elimina todas las referencias cruzadas para una reserva específica */
+    @Query("DELETE FROM reserva_quad_cross_ref WHERE reserva_id = :reservaId")
+    void deleteCrossRefsForReserva(int reservaId);
+
+    /** Devuelve los IDs de los quads asociados a una reserva */
+    @Query("SELECT quad_id FROM reserva_quad_cross_ref WHERE reserva_id = :reservaId")
+    LiveData<List<Integer>> getQuadIdsForReserva(int reservaId);
 
     /** Devuelve todos los reservas ordenados por nombre ascendente */
     @Query("SELECT * FROM Reservas ORDER BY nombre ASC")
