@@ -3,12 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
+    android:background="#000000"
     android:padding="16dp">
 
     <CheckBox
         android:id="@+id/checkbox_quad_seleccionable"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textColor="#FFFFFF" />
 
     <LinearLayout
         android:layout_width="0dp"
@@ -21,17 +23,20 @@
             android:id="@+id/matricula_quad_seleccionable"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tipo_quad_seleccionable"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF" />
 
         <TextView
             android:id="@+id/precio_quad_seleccionable"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF" />
 
     </LinearLayout>
 
