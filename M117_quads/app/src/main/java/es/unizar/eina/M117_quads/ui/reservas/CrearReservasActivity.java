@@ -4,11 +4,11 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -17,22 +17,28 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import es.unizar.eina.M117_quads.R;
 import es.unizar.eina.M117_quads.database.Quad;
 import es.unizar.eina.M117_quads.database.Reserva;
 import es.unizar.eina.M117_quads.ui.quads.ListaQuadsActivity;
+import es.unizar.eina.M117_quads.ui.quads.QuadSeleccionadoAdapter;
+import es.unizar.eina.M117_quads.ui.quads.QuadViewModel;
 
-public class CrearReservasActivity extends AppCompatActivity {
+public class CrearReservasActivity extends AppCompatActivity implements QuadSeleccionadoAdapter.OnItemClickListener {
 
     private EditText mEditNombreView;
     private EditText mEditNumeroView;
     private EditText mEditFechaRecogidaView;
     private EditText mEditFechaDevolucionView;
     private ReservaViewModel mReservaViewModel;
+    private QuadViewModel mQuadViewModel;
     private final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+    private ArrayList<Integer> quadsSeleccionadosIds = new ArrayList<>();
     private ArrayList<Quad> quadsSeleccionados = new ArrayList<>();
+    private QuadSeleccionadoAdapter mAdapter;
 
     private final ActivityResultLauncher<Intent> mGetContent = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
@@ -40,27 +46,8 @@ public class CrearReservasActivity extends AppCompatActivity {
                 if (result.getResultCode() == AppCompatActivity.RESULT_OK) {
                     Intent data = result.getData();
                     if (data != null) {
-                        ArrayList<Quad> resultList = null;
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                            resultList = data.getParcelableArrayListExtra(ListaQuadsActivity.EXTRA_REPLY, Quad.class);
-                        } else {
-                            @SuppressWarnings("deprecation")
-                            ArrayList<Parcelable> parcelableList = data.getParcelableArrayListExtra(ListaQuadsActivity.EXTRA_REPLY);
-                            if (parcelableList != null) {
-                                resultList = new ArrayList<>();
-                                for (Parcelable p : parcelableList) {
-                                    if (p instanceof Quad) {
-                                        resultList.add((Quad) p);
-                                    }
-                                }
-                            }
-                        }
-
-                        if (resultList != null) {
-                            quadsSeleccionados = resultList;
-                        }
-
-                        Toast.makeText(this, "Quads seleccionados: " + quadsSeleccionados.size(), Toast.LENGTH_SHORT).show();
+                        quadsSeleccionadosIds = data.getIntegerArrayListExtra(ListaQuadsActivity.EXTRA_REPLY_QUADS_SELECCIONADOS);
+                        updateQuadsSeleccionados();
                     }
                 }
             });
@@ -75,11 +62,18 @@ public class CrearReservasActivity extends AppCompatActivity {
         mEditFechaRecogidaView = findViewById(R.id.edit_fecha_recogida);
         mEditFechaDevolucionView = findViewById(R.id.edit_fecha_devolucion);
 
+        RecyclerView recyclerView = findViewById(R.id.recyclerview_quads_seleccionados);
+        mAdapter = new QuadSeleccionadoAdapter(this);
+        recyclerView.setAdapter(mAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
         mReservaViewModel = new ViewModelProvider(this).get(ReservaViewModel.class);
+        mQuadViewModel = new ViewModelProvider(this).get(QuadViewModel.class);
 
         final Button btnAnadirQuad = findViewById(R.id.btnAnadirQuad);
         btnAnadirQuad.setOnClickListener(v -> {
             Intent intent = new Intent(CrearReservasActivity.this, ListaQuadsActivity.class);
+            intent.putIntegerArrayListExtra("quads_ya_seleccionados", quadsSeleccionadosIds);
             mGetContent.launch(intent);
         });
 
@@ -98,9 +92,7 @@ public class CrearReservasActivity extends AppCompatActivity {
                     Date fechaDevolucion = sdf.parse(fechaDevolucionStr);
 
                     Reserva nuevaReserva = new Reserva(nombre, numero, fechaRecogida, fechaDevolucion);
-                    mReservaViewModel.insert(nuevaReserva);
-
-                    // TODO: Asociar los quads seleccionados a la nueva reserva
+                    mReservaViewModel.insert(nuevaReserva, quadsSeleccionadosIds);
 
                     setResult(RESULT_OK, new Intent());
                     finish();
@@ -109,5 +101,23 @@ public class CrearReservasActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void updateQuadsSeleccionados() {
+        if (quadsSeleccionadosIds != null && !quadsSeleccionadosIds.isEmpty()) {
+            mQuadViewModel.getQuadsByIds(quadsSeleccionadosIds).observe(this, quads -> {
+                quadsSeleccionados = new ArrayList<>(quads);
+                mAdapter.setQuads(quadsSeleccionados);
+            });
+        } else {
+            quadsSeleccionados.clear();
+            mAdapter.setQuads(quadsSeleccionados);
+        }
+    }
+
+    @Override
+    public void onEliminarClick(Quad quad) {
+        quadsSeleccionadosIds.remove(Integer.valueOf(quad.getId()));
+        updateQuadsSeleccionados();
     }
 }

@@ -27,6 +27,10 @@ public class ReservaViewModel extends AndroidViewModel {
         return allReservas;
     }
 
+    public void insert(Reserva reserva, List<Integer> quadIds) {
+        repository.insert(reserva, quadIds);
+    }
+
     public void insert(Reserva reserva) {
         repository.insert(reserva);
     }
@@ -35,11 +39,19 @@ public class ReservaViewModel extends AndroidViewModel {
         return repository.getReservaById(id);
     }
 
+    public void update(Reserva reserva, List<Integer> quadIds) {
+        repository.update(reserva, quadIds);
+    }
+
     public void update(Reserva reserva) {
         repository.update(reserva);
     }
 
     public void delete(Reserva reserva) {
         repository.delete(reserva);
+    }
+
+    public LiveData<List<Integer>> getQuadIdsForReserva(int reservaId) {
+        return repository.getQuadIdsForReserva(reservaId);
     }
 }
