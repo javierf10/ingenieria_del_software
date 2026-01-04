@@ -65,6 +65,16 @@ public class QuadViewModel extends AndroidViewModel {
     }
 
     /**
+     * Obtiene una lista de quads a partir de sus IDs.
+     *
+     * @param quadIds Lista de identificadores de quads.
+     * @return LiveData que contiene la lista de quads correspondientes.
+     */
+    public LiveData<List<Quad>> getQuadsByIds(List<Integer> quadIds) {
+        return repository.getQuadsByIds(quadIds);
+    }
+
+    /**
      * Actualiza un quad existente en la base de datos.
      *
      * @param quad Quad a actualizar

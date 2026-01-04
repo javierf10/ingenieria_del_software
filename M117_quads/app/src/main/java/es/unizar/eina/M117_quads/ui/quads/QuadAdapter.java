@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.Collections;
 import java.util.List;
 
 import es.unizar.eina.M117_quads.R;
@@ -23,7 +24,7 @@ import es.unizar.eina.M117_quads.database.Quad;
 public class QuadAdapter extends RecyclerView.Adapter<QuadAdapter.QuadViewHolder> {
 
     /** Lista de quads que se mostrarán en el RecyclerView. */
-    private List<Quad> quads;
+    private List<Quad> quads = Collections.emptyList();
 
     /** Listener que gestiona los clics sobre los botones de cada item. */
     private final OnQuadClickListener listener;
@@ -58,7 +59,7 @@ public class QuadAdapter extends RecyclerView.Adapter<QuadAdapter.QuadViewHolder
      * @param lista Lista de quads
      */
     public void setQuads(List<Quad> lista) {
-        this.quads = lista;
+        this.quads = (lista != null) ? lista : Collections.emptyList();
         notifyDataSetChanged();
     }
 
@@ -100,7 +101,7 @@ public class QuadAdapter extends RecyclerView.Adapter<QuadAdapter.QuadViewHolder
      */
     @Override
     public int getItemCount() {
-        return (quads == null) ? 0 : quads.size();
+        return quads.size();
     }
 
     /**
