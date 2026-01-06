@@ -111,6 +111,18 @@ public class QuadRepository {
         );
     }
 
+    public LiveData<List<Quad>> getQuadsOrderByMatricula() {
+        return quadDao.getQuadsOrderByMatricula();
+    }
+
+    public LiveData<List<Quad>> getQuadsOrderByTipo() {
+        return quadDao.getQuadsOrderByTipo();
+    }
+
+    public LiveData<List<Quad>> getQuadsOrderByPrecio() {
+        return quadDao.getQuadsOrderByPrecio();
+    }
+
 }
 
 

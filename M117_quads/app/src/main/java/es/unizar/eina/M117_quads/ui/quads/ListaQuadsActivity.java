@@ -36,7 +36,7 @@ public class ListaQuadsActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         mQuadViewModel = new ViewModelProvider(this).get(QuadViewModel.class);
-        mQuadViewModel.getAllQuads().observe(this, quads -> {
+        mQuadViewModel.getQuads().observe(this, quads -> {
             if (quads != null && mQuadsYaSeleccionados != null) {
                 List<Quad> quadsDisponibles = quads.stream()
                         .filter(q -> !mQuadsYaSeleccionados.contains(q.getId()))

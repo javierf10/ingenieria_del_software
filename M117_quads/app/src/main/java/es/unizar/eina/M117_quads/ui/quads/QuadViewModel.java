@@ -5,6 +5,7 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MediatorLiveData;
 
 import java.util.List;
 
@@ -22,8 +23,14 @@ public class QuadViewModel extends AndroidViewModel {
     /** Repositorio que gestiona el acceso a los datos de los quads. */
     private final QuadRepository repository;
 
-    /** Lista observable de todos los quads. */
-    private final LiveData<List<Quad>> allQuads;
+    /**
+     * LiveData mediador que expone la lista de quads actualmente observable
+     * (sin ordenar o con el criterio de ordenación seleccionado).
+     */
+    private final MediatorLiveData<List<Quad>> quads = new MediatorLiveData<>();
+
+    /** Fuente actual de datos observada por el MediatorLiveData. */
+    private LiveData<List<Quad>> currentSource;
 
     /**
      * Constructor del ViewModel.
@@ -33,16 +40,50 @@ public class QuadViewModel extends AndroidViewModel {
     public QuadViewModel(@NonNull Application application) {
         super(application);
         repository = new QuadRepository(application);
-        allQuads = repository.getAllQuads();
+        setSource(repository.getAllQuads()); // orden por defecto
     }
 
     /**
-     * Obtiene la lista observable de todos los quads.
+     * Cambia la fuente de datos observada por el MediatorLiveData.
+     *
+     * @param newSource Nueva fuente de datos
+     */
+    private void setSource(LiveData<List<Quad>> newSource) {
+        if (currentSource != null) {
+            quads.removeSource(currentSource);
+        }
+        currentSource = newSource;
+        quads.addSource(newSource, quads::setValue);
+    }
+
+    /**
+     * Obtiene la lista observable de quads actualmente activa.
      *
      * @return {@link LiveData} con la lista de quads
      */
-    public LiveData<List<Quad>> getAllQuads() {
-        return allQuads;
+    public LiveData<List<Quad>> getQuads() {
+        return quads;
+    }
+
+    /**
+     * Ordena los quads por matrícula.
+     */
+    public void ordenarPorMatricula() {
+        setSource(repository.getQuadsOrderByMatricula());
+    }
+
+    /**
+     * Ordena los quads por tipo.
+     */
+    public void ordenarPorTipo() {
+        setSource(repository.getQuadsOrderByTipo());
+    }
+
+    /**
+     * Ordena los quads por precio.
+     */
+    public void ordenarPorPrecio() {
+        setSource(repository.getQuadsOrderByPrecio());
     }
 
     /**
@@ -67,8 +108,8 @@ public class QuadViewModel extends AndroidViewModel {
     /**
      * Obtiene una lista de quads a partir de sus IDs.
      *
-     * @param quadIds Lista de identificadores de quads.
-     * @return LiveData que contiene la lista de quads correspondientes.
+     * @param quadIds Lista de identificadores de quads
+     * @return LiveData que contiene la lista de quads correspondientes
      */
     public LiveData<List<Quad>> getQuadsByIds(List<Integer> quadIds) {
         return repository.getQuadsByIds(quadIds);

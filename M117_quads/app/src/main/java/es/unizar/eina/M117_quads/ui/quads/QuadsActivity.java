@@ -52,7 +52,24 @@ public class QuadsActivity extends AppCompatActivity implements QuadAdapter.OnQu
 
         // Inicialización del ViewModel y observación de cambios en los quads
         quadViewModel = new ViewModelProvider(this).get(QuadViewModel.class);
-        quadViewModel.getAllQuads().observe(this, adapter::setQuads);
+        quadViewModel.getQuads().observe(this, adapter::setQuads);
+
+        // Botones de ordenación
+        Button btnOrdenMatricula = findViewById(R.id.btnOrdenMatricula);
+        Button btnOrdenTipo = findViewById(R.id.btnOrdenTipo);
+        Button btnOrdenPrecio = findViewById(R.id.btnOrdenPrecio);
+
+        btnOrdenMatricula.setOnClickListener(v ->
+                quadViewModel.ordenarPorMatricula()
+        );
+
+        btnOrdenTipo.setOnClickListener(v ->
+                quadViewModel.ordenarPorTipo()
+        );
+
+        btnOrdenPrecio.setOnClickListener(v ->
+                quadViewModel.ordenarPorPrecio()
+        );
     }
 
     /**

@@ -46,5 +46,15 @@ public interface QuadDao {
     @Query("DELETE FROM Quads WHERE matricula LIKE :prefix")
     void deleteQuadsByPrefix(String prefix);
 
+    @Query("SELECT * FROM Quads ORDER BY matricula ASC")
+    LiveData<List<Quad>> getQuadsOrderByMatricula();
+
+    @Query("SELECT * FROM Quads ORDER BY tipo ASC")
+    LiveData<List<Quad>> getQuadsOrderByTipo();
+
+    @Query("SELECT * FROM Quads ORDER BY precio ASC")
+    LiveData<List<Quad>> getQuadsOrderByPrecio();
+
+
 
 }

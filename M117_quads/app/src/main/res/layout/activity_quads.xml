@@ -20,24 +20,27 @@
         android:orientation="horizontal"
         android:gravity="center"
         android:layout_marginTop="16dp">
-        
+
         <Button
+            android:id="@+id/btnOrdenMatricula"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:text="@string/matricula"
             android:textColor="#FFFFFF"
             android:backgroundTint="#1E1E1E" />
-        
+
         <Button
+            android:id="@+id/btnOrdenTipo"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:text="@string/tipo2"
             android:textColor="#FFFFFF"
             android:backgroundTint="#1E1E1E" />
-        
+
         <Button
+            android:id="@+id/btnOrdenPrecio"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
