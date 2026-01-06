@@ -1,0 +1,15 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_unit_equivalence_tests"
+        android:title="Pruebas inserción (clases de equivalencia)" />
+
+    <item
+        android:id="@+id/menu_volume_tests"
+        android:title="Pruebas de volumen" />
+
+    <item
+        android:id="@+id/menu_cleanup_tests"
+        android:title="Borrar datos de pruebas" />
+
+</menu>

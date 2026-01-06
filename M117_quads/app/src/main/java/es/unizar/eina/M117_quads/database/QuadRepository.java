@@ -34,6 +34,16 @@ public class QuadRepository {
     }
 
     /**
+     * Constructor alternativo para tests.
+     * Permite inyectar una base de datos (por ejemplo, en memoria).
+     */
+    protected QuadRepository(AppDatabase db) {
+        quadDao = db.quadDao();
+        allQuads = quadDao.getOrderedQuads();
+    }
+
+
+    /**
      * Devuelve todos los quads de la base de datos.
      *
      * @return LiveData que contiene la lista de quads ordenados.
@@ -93,6 +103,12 @@ public class QuadRepository {
      */
     public void delete(Quad quad) {
         AppDatabase.databaseWriteExecutor.execute(() -> quadDao.delete(quad));
+    }
+
+    public void deleteTestQuads() {
+        AppDatabase.databaseWriteExecutor.execute(
+                () -> quadDao.deleteQuadsByPrefix("%ABC")
+        );
     }
 
 }

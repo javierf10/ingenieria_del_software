@@ -57,4 +57,7 @@ public interface ReservaDao {
     /** Devuelve un reserva concreto por su identificador */
     @Query("SELECT * FROM Reservas WHERE reserva_id = :id LIMIT 1")
     LiveData<Reserva> getReservaById(int id);
+
+    @Query("DELETE FROM Reservas WHERE nombre LIKE :prefix")
+    void deleteReservasByPrefix(String prefix);
 }

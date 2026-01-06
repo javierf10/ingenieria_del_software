@@ -38,7 +38,13 @@ public interface QuadDao {
     @Query("SELECT * FROM Quads WHERE quad_id = :id LIMIT 1")
     LiveData<Quad> getQuadById(int id);
 
+
     /** Devuelve una lista de quads a partir de sus IDs */
     @Query("SELECT * FROM Quads WHERE quad_id IN (:quadIds)")
     LiveData<List<Quad>> getQuadsByIds(List<Integer> quadIds);
+
+    @Query("DELETE FROM Quads WHERE matricula LIKE :prefix")
+    void deleteQuadsByPrefix(String prefix);
+
+
 }

@@ -148,4 +148,11 @@ public class ReservaRepository {
         AppDatabase.databaseWriteExecutor.execute(() -> reservaDao.delete(reserva));
     }
 
+    public void deleteTestReservas() {
+        AppDatabase.databaseWriteExecutor.execute(
+                () -> reservaDao.deleteReservasByPrefix("ClienteTest_%")
+        );
+    }
+
+
 }

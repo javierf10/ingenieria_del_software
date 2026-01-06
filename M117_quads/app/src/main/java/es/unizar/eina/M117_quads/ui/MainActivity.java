@@ -10,6 +10,17 @@ import es.unizar.eina.M117_quads.R;
 import es.unizar.eina.M117_quads.ui.quads.QuadsActivity;
 import es.unizar.eina.M117_quads.ui.reservas.ReservasActivity;
 
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.Toast;
+
+import es.unizar.eina.M117_quads.database.QuadRepository;
+import es.unizar.eina.M117_quads.database.ReservaRepository;
+
+import es.unizar.eina.M117_quads.testing.VolumeTestHelper;
+import es.unizar.eina.M117_quads.testing.UnitTests;
+
+
 /**
  * Actividad principal de la aplicación.
  * <p>
@@ -48,4 +59,53 @@ public class MainActivity extends AppCompatActivity {
             startActivity(i);
         });
     }
+
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_tests, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        QuadRepository quadRepo = new QuadRepository(getApplication());
+        ReservaRepository reservaRepo = new ReservaRepository(getApplication());
+
+        if (item.getItemId() == R.id.menu_volume_tests) {
+
+            VolumeTestHelper.insertManyQuads(quadRepo, 100);
+            VolumeTestHelper.insertManyReservas(reservaRepo, 20000);
+
+            Toast.makeText(this, "Prueba de volumen ejecutada", Toast.LENGTH_LONG).show();
+            return true;
+        }
+
+        if (item.getItemId() == R.id.menu_cleanup_tests) {
+
+            quadRepo.deleteTestQuads();
+            reservaRepo.deleteTestReservas();
+
+            Toast.makeText(this, "Datos de prueba volumen eliminados", Toast.LENGTH_LONG).show();
+            return true;
+        }
+
+        if (item.getItemId() == R.id.menu_unit_equivalence_tests) {
+
+            UnitTests unitTests = new UnitTests(quadRepo);
+            unitTests.runAllTests();
+
+            Toast.makeText(this, "Datos de prueba unitarios ejecutados", Toast.LENGTH_LONG).show();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+
+
+
+
 }
