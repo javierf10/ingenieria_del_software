@@ -1,5 +1,6 @@
 package es.unizar.eina.M117_quads.ui;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -19,6 +20,7 @@ import es.unizar.eina.M117_quads.database.ReservaRepository;
 
 import es.unizar.eina.M117_quads.testing.VolumeTestHelper;
 import es.unizar.eina.M117_quads.testing.UnitTests;
+import es.unizar.eina.M117_quads.testing.StressTests;
 
 
 /**
@@ -101,11 +103,35 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
 
+        if (item.getItemId() == R.id.menu_stress_test) {
+            mostrarConfirmacionStressTest();
+            return true;
+        }
+
         return super.onOptionsItemSelected(item);
     }
 
+    private void mostrarConfirmacionStressTest() {
+        new AlertDialog.Builder(this)
+                .setTitle("Prueba de estrés")
+                .setMessage(
+                        "Esta prueba puede provocar fallos graves en la aplicación " +
+                                "y requerir borrar datos o reinstalarla.\n\n" +
+                                "No se recomienda ejecutar en un dispositivo real.\n\n" +
+                                "¿Deseas continuar?"
+                )
+                .setPositiveButton("Ejecutar", (dialog, which) -> ejecutarStressTest())
+                .setNegativeButton("Cancelar", null)
+                .show();
+    }
 
+    private void ejecutarStressTest() {
+        QuadRepository repository =
+                new QuadRepository(getApplication());
 
+        StressTests stressTests = new StressTests(repository);
+        stressTests.testDescripcionMaxima();
+    }
 
 
 }

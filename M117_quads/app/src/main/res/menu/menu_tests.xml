@@ -2,7 +2,7 @@
 
     <item
         android:id="@+id/menu_unit_equivalence_tests"
-        android:title="Pruebas inserción (clases de equivalencia)" />
+        android:title="Pruebas unitarias" />
 
     <item
         android:id="@+id/menu_volume_tests"
@@ -10,6 +10,10 @@
 
     <item
         android:id="@+id/menu_cleanup_tests"
-        android:title="Borrar datos de pruebas" />
+        android:title="Borrar datos pruebas volumen" />
+
+    <item
+        android:id="@+id/menu_stress_test"
+        android:title="Prueba de estrés" />
 
 </menu>
