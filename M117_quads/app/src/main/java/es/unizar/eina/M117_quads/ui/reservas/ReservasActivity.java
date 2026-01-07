@@ -41,6 +41,20 @@ public class ReservasActivity extends AppCompatActivity implements ReservaAdapte
         setContentView(R.layout.activity_reservas);
 
         sendAbstraction = new SendAbstractionImpl(this, "whatsapp");
+
+        // Configuración de los botones de ordenación
+        Button btnOrdenarPorNombre = findViewById(R.id.btnOrdenarPorNombre);
+        btnOrdenarPorNombre.setOnClickListener(v -> reservaViewModel.setSortBy("nombre"));
+
+        Button btnOrdenarPorNumero = findViewById(R.id.btnOrdenarPorNumero);
+        btnOrdenarPorNumero.setOnClickListener(v -> reservaViewModel.setSortBy("numero"));
+
+        Button btnOrdenarPorFechaRecogida = findViewById(R.id.btnOrdenarPorFechaRecogida);
+        btnOrdenarPorFechaRecogida.setOnClickListener(v -> reservaViewModel.setSortBy("fechaRecogida"));
+
+        Button btnOrdenarPorFechaDevolucion = findViewById(R.id.btnOrdenarPorFechaDevolucion);
+        btnOrdenarPorFechaDevolucion.setOnClickListener(v -> reservaViewModel.setSortBy("fechaDevolucion"));
+
         // Configuración del botón para crear una nueva reserva
         Button btnCrear = findViewById(R.id.btnCrearReserva);
         btnCrear.setOnClickListener(v -> {
@@ -59,9 +73,6 @@ public class ReservasActivity extends AppCompatActivity implements ReservaAdapte
         // Inicialización del ViewModel y observación de cambios en las reservas
         reservaViewModel = new ViewModelProvider(this).get(ReservaViewModel.class);
         reservaViewModel.getAllReservas().observe(this, adapter::setReservas);
-
-
-
     }
 
     /**

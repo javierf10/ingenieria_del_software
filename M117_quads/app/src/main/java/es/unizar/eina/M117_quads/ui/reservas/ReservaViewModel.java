@@ -4,7 +4,12 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Transformations;
+
 import java.util.List;
+import java.util.Objects;
+
 import es.unizar.eina.M117_quads.database.Reserva;
 import es.unizar.eina.M117_quads.database.ReservaRepository;
 
@@ -14,17 +19,33 @@ import es.unizar.eina.M117_quads.database.ReservaRepository;
 public class ReservaViewModel extends AndroidViewModel {
 
     private final ReservaRepository repository;
+    private final MutableLiveData<String> mSortBy = new MutableLiveData<>();
     private final LiveData<List<Reserva>> allReservas;
+
 
     public ReservaViewModel(@NonNull Application application) {
         super(application);
         repository = new ReservaRepository(application);
-        // Obtenemos las reservas directamente, ordenadas por nombre por defecto.
-        allReservas = repository.getReservasOrderedByNombre();
+        allReservas = Transformations.switchMap(mSortBy, sortBy -> {
+            if (Objects.equals(sortBy, "numero")) {
+                return repository.getReservasOrderedByNumero();
+            } else if (Objects.equals(sortBy, "fechaRecogida")) {
+                return repository.getReservasOrderedByFechaRecogida();
+            } else if (Objects.equals(sortBy, "fechaDevolucion")) {
+                return repository.getReservasOrderedByFechaDevolucion();
+            } else {
+                return repository.getReservasOrderedByNombre();
+            }
+        });
+        setSortBy("nombre");
     }
 
     public LiveData<List<Reserva>> getAllReservas() {
         return allReservas;
+    }
+
+    public void setSortBy(String sortBy) {
+        mSortBy.setValue(sortBy);
     }
 
     public void insert(Reserva reserva, List<Integer> quadIds) {
