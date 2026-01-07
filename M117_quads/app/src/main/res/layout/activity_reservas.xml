@@ -22,6 +22,7 @@
         android:layout_marginTop="8dp">
 
         <Button
+            android:id="@+id/btnOrdenarPorNombre"
             android:layout_width="1dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -31,6 +32,7 @@
             android:textSize="12sp" />
 
         <Button
+            android:id="@+id/btnOrdenarPorNumero"
             android:layout_width="3dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -40,6 +42,7 @@
             android:backgroundTint="#1E1E1E" />
 
         <Button
+            android:id="@+id/btnOrdenarPorFechaRecogida"
             android:layout_width="6dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -49,6 +52,7 @@
             android:textSize="11sp" />
 
         <Button
+            android:id="@+id/btnOrdenarPorFechaDevolucion"
             android:layout_width="21dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
