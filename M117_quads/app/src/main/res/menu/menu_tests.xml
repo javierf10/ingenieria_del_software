@@ -1,8 +1,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/menu_unit_equivalence_tests"
-        android:title="Pruebas unitarias" />
+        android:id="@+id/menu_unit_equivalence_tests_quads"
+        android:title="Pruebas unitarias (Quads)" />
+
+    <item
+        android:id="@+id/menu_unit_equivalence_tests_reservas"
+        android:title="Pruebas unitarias (Reservas)" />
 
     <item
         android:id="@+id/menu_volume_tests"
