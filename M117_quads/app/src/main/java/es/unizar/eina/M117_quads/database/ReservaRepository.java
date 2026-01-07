@@ -4,7 +4,11 @@ import android.app.Application;
 
 import androidx.lifecycle.LiveData;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Repositorio para la gestión de objetos {@link Reserva}.
@@ -18,6 +22,9 @@ public class ReservaRepository {
     /** DAO de acceso a los reservas en la base de datos. */
     private final ReservaDao reservaDao;
 
+    private final SimpleDateFormat validationDateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+
+
     /**
      * Constructor del repositorio.
      *
@@ -26,6 +33,18 @@ public class ReservaRepository {
     public ReservaRepository(Application application) {
         AppDatabase db = AppDatabase.getDatabase(application);
         reservaDao = db.reservaDao();
+        // Asegura que el formateador sea estricto para la validación.
+        validationDateFormat.setLenient(false);
+    }
+
+    /**
+     * Constructor para testing.
+     *
+     * @param db Instancia de la base de datos.
+     */
+    public ReservaRepository(AppDatabase db) {
+        reservaDao = db.reservaDao();
+        validationDateFormat.setLenient(false);
     }
 
     /**
@@ -70,6 +89,7 @@ public class ReservaRepository {
      * @param reserva Reserva a insertar.
      */
     public void insert(Reserva reserva) {
+        Validator.validateReserva(reserva.getNombre(), reserva.getFechaRecogida(), reserva.getFechaDevolucion(), reserva.getNumeroTelef());
         AppDatabase.databaseWriteExecutor.execute(() -> reservaDao.insert(reserva));
     }
 
@@ -80,6 +100,7 @@ public class ReservaRepository {
      * @param quadIds Lista de IDs de quads a asociar.
      */
     public void insert(Reserva reserva, List<Integer> quadIds) {
+        Validator.validateReserva(reserva.getNombre(), reserva.getFechaRecogida(), reserva.getFechaDevolucion(), reserva.getNumeroTelef());
         AppDatabase.databaseWriteExecutor.execute(() -> {
             long reservaId = reservaDao.insert(reserva);
             if (quadIds != null && !quadIds.isEmpty()) {
@@ -97,6 +118,7 @@ public class ReservaRepository {
      * @param reserva Reserva a actualizar.
      */
     public void update(Reserva reserva) {
+        Validator.validateReserva(reserva.getNombre(), reserva.getFechaRecogida(), reserva.getFechaDevolucion(), reserva.getNumeroTelef());
         AppDatabase.databaseWriteExecutor.execute(() -> reservaDao.update(reserva));
     }
 
@@ -107,6 +129,7 @@ public class ReservaRepository {
      * @param quadIds Lista de IDs de quads a asociar.
      */
     public void update(Reserva reserva, List<Integer> quadIds) {
+        Validator.validateReserva(reserva.getNombre(), reserva.getFechaRecogida(), reserva.getFechaDevolucion(), reserva.getNumeroTelef());
         AppDatabase.databaseWriteExecutor.execute(() -> {
             reservaDao.update(reserva);
             reservaDao.deleteCrossRefsForReserva(reserva.getId());
@@ -153,6 +176,5 @@ public class ReservaRepository {
                 () -> reservaDao.deleteReservasByPrefix("ClienteTest_%")
         );
     }
-
 
 }
