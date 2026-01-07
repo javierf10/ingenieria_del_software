@@ -35,4 +35,8 @@
     <string name="quad_precio_label">Precio: %.2f euros</string>
     <string name="reserva_fechas_label">Recogida: %1$s\nDevolución: %2$s</string>
     <string name="enviar">ENVIAR</string>
+    <string name="ordenar_por_nombre">Ordenar por nombre</string>
+    <string name="ordenar_por_numero">Ordenar por número</string>
+    <string name="ordenar_por_fecha_recogida">Ordenar por fecha de recogida</string>
+    <string name="ordenar_por_fecha_devolucion">Ordenar por fecha de devolución</string>
 </resources>
