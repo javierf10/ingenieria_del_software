@@ -20,6 +20,7 @@ import es.unizar.eina.M117_quads.database.ReservaRepository;
 
 import es.unizar.eina.M117_quads.testing.VolumeTestHelper;
 import es.unizar.eina.M117_quads.testing.UnitTests;
+import es.unizar.eina.M117_quads.testing.ReservaUnitTests;
 import es.unizar.eina.M117_quads.testing.StressTests;
 
 
@@ -94,12 +95,21 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
 
-        if (item.getItemId() == R.id.menu_unit_equivalence_tests) {
+        if (item.getItemId() == R.id.menu_unit_equivalence_tests_quads) {
 
             UnitTests unitTests = new UnitTests(quadRepo);
             unitTests.runAllTests();
 
-            Toast.makeText(this, "Datos de prueba unitarios ejecutados", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Datos de prueba unitarios (Quads) ejecutados", Toast.LENGTH_LONG).show();
+            return true;
+        }
+
+        if (item.getItemId() == R.id.menu_unit_equivalence_tests_reservas) {
+
+            ReservaUnitTests reservaUnitTests = new ReservaUnitTests(reservaRepo);
+            reservaUnitTests.runAllTests();
+
+            Toast.makeText(this, "Datos de prueba unitarios (Reservas) ejecutados", Toast.LENGTH_LONG).show();
             return true;
         }
 
